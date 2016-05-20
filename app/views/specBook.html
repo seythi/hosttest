@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+	<title></title>
+</head>
+<body>
+	<div class='header'>
+	<h4>hello {{session['first_name']}}</h4><a href="/books/add">add book and review</a><a href="/logout">log out</a>
+	</div>
+	<div class="one-half column">
+	{{book}}
+	<h3>{{book['title']}}</h3>
+	<h6>By:{{book['author']}}</h6>
+		{%for review in reviews%}
+			<a class="booktitle" href="/books/{{review['book_id']}}">{{review['title']}}</a>
+			<p>Rating: {{review['rating']}}</p>
+			<p><a href="/user/{{review['user_id']}}">{{review['first_name']}}</a> says: {{review['content']}}</p>
+		{%endfor%}
+	</div>
+	<div class="one-third column">
+		<form method="POST" action="/review">
+		<input type="textarea" name="content">
+		<input type="range" name="rating" min = "0" max="5">
+		<input type="submit" value="Add review">
+		<input type="hidden" name="user_id" value="{{session['id']}}">
+		<input type="hidden" name="book_id" value="{{book['id']}}">
+		</form>
+	</div>
+</body>
+</html>

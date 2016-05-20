@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+</head>
+<body>
+	<div class='header'>
+		<h4>hello person name</h4><a href="/books/add">add book and review</a><a href="/logout">log out</a>
+	</div>
+	<form method="POST" action="/addbook">
+		<input type="textarea" name="title">
+		<input type="textarea" name="author">
+		<input type="textarea" name="content">
+		<input type="range" name="rating" min = "0" max="5">
+		<input type="submit" value="Add book and review">
+		<input type="hidden" name="user_id" value="{{session['id']}}">
+</body>
+</html>
